@@ -2,19 +2,22 @@ const loadBooks = ()=>{
     const searchField = document.getElementById('search-field');
     const searchText= searchField.value;
     searchField.value='';
-     // hidding search data and total result data and displaying spinner
-    toggleSpinner('visible');
-    toggleSearchResult('hidden');
     // error handling to check if seach field is empty or not 
     if(searchText ==='')
     {
         alert("you didn't search anything");  
     }
-    //  fetching book data from api 
-     const url=`https://openlibrary.org/search.json?q=${searchText}`;
-     fetch(url)
-     .then(result => result.json())
-     .then(data => displayBookData(data.docs));
+    else{
+        // hidding search data and total result data and displaying spinner
+        toggleSpinner('visible');
+        toggleSearchResult('hidden');
+        //  fetching book data from api 
+        const url=`https://openlibrary.org/search.json?q=${searchText}`;
+        fetch(url)
+        .then(result => result.json())
+        .then(data => displayBookData(data.docs));
+    }
+   
 };
 // toggle spinner and search result by function
 const toggleSpinner = displayStyle => {
